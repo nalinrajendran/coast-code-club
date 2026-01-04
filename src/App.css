@@ -5,11 +5,84 @@ body {
   scrollbar-gutter: auto;
 }
 
+/* Loading Screen Styles */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #141414;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.loading-title {
+  font-size: 4rem;
+  color: white;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(247, 185, 128, 0.3);
+  border-top: 3px solid #F7B980;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: #8c8c8c;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
 .scene_container {
   width: 100vw;
   height: 100vh;
   background-color: #141414;
   scrollbar-gutter: auto;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Hide scene on first and last pages */
+.scene_container.hidden-scene {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Utilities classes for fonts */
@@ -56,6 +129,18 @@ body {
 
 .page--hidden {
   opacity: 0;
+}
+
+/* Enable interaction on form elements only */
+.page form {
+  pointer-events: auto;
+}
+
+.page form input,
+.page form textarea,
+.page form button,
+.page form a {
+  pointer-events: auto;
 }
 
 .page--welcome {
@@ -146,5 +231,65 @@ body {
 
   .message--sub {
     font-size: 16px;
+  }
+}
+
+/* Mobile responsive fixes - keep layout but make it work on small screens */
+@media (max-width: 768px) {
+  /* Keep scene visible on mobile */
+  .scene_container {
+    display: block;
+  }
+
+  /* Adjust page widths and positioning */
+  .page--coca {
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    width: 85% !important;
+    max-width: 85% !important;
+  }
+
+  .page--fanta {
+    right: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    width: 85% !important;
+    max-width: 85% !important;
+  }
+
+  .page--sprite {
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    width: 85% !important;
+    max-width: 85% !important;
+  }
+
+  .page--welcome {
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    width: 85% !important;
+  }
+
+  /* Reduce message sizes */
+  .message {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .message--sub {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  /* Ensure text wraps properly */
+  .page p {
+    max-width: 100% !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .social-links {
+    flex-direction: column;
+    gap: 1rem;
   }
 }

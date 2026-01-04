@@ -35,3 +35,65 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
+/* Mobile styles: center and stack the text content, avoid overflow */
+@media (max-width: 768px) {
+  .text-content {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem;
+  }
+
+  .page-0,
+  .page-1,
+  .page-2,
+  .page-3,
+  .page-4 {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+  }
+
+  /* Reduce text sizes for smaller screens */
+  .text-content .message--sub {
+    font-size: 0.9rem;
+  }
+  .text-content .message {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+}
+
+/* Fix specific sections that were overflowing on mobile */
+@media (max-width: 768px) {
+  /* Center the second and fourth page content and remove rigid right/left offsets */
+  #second-section,
+  #fourth-section,
+  .page--coca,
+  .page--sprite {
+    position: relative !important;
+    top: 0 !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    width: 90% !important;
+    padding: 0.75rem !important;
+  }
+
+  /* Allow paragraph widths to expand and break long words */
+  #second-section p,
+  #fourth-section p,
+  .page--coca p,
+  .page--sprite p {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}

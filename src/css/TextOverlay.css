@@ -78,3 +78,25 @@
   font-family: 'Roboto Slab', serif;
   color: #888;
 }
+
+/* Mobile adjustments for overlay text */
+@media (max-width: 768px) {
+  .text-overlay {
+    padding: 1rem;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .features-list li {
+    font-size: 0.95rem;
+  }
+}
